@@ -15,6 +15,7 @@ class CreateUpdatesTable extends Migration
     {
         Schema::create('updates', function (Blueprint $table) {
             $table->id();
+            $table->integer('update_id')->nullable();
             $table->timestamps();
         });
     }

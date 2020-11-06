@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
-use Telegram\Bot;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,16 +23,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/test', [ApiController::class, 'test']);
 Route::get('/telegram', [ApiController::class, 'test']);
 
-// Put this inside either the POST route '/<token>/webhook' closure (see below) or 
-// whatever Controller is handling your POST route
-$updates = Telegram::getWebhookUpdates();
 
 // Example of POST Route:
-Route::post('/telegram/webhook', function () {
-    $updates = Telegram::getWebhookUpdates();
+Route::post('/telegram/webhook',[ApiController::class,'test'])->name("webhook");
 
-    return 'ok';
-});
+
+Route::post("/telegram/start",[ApiController::class,'start'])->name("start");
+
+Route::post("/telegram/update",[ApiController::class,'update'])->name("update");
+
+Route::post("/telegram/explore",[ApiController::class,'explore'])->name("explore");
+
+// Route::post("/telegram/menu",[ApiController::class,'menu_principal'])->name("menu");
 
 // !!IMPORTANT!!
 /* 

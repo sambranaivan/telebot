@@ -40,4 +40,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function pets()
+    {
+        return $this->hasMany("App\Models\pet");
+    }
+
+    public function capture($sprite)
+    {
+        $pet = new pet();
+        $pet->user_id = $this->id;
+        $pet->sprite_id = $sprite->id;
+        $pet->save();
+    }
 }
