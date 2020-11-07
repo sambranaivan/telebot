@@ -153,11 +153,13 @@ class ApiController extends Controller
         $user = User::where('chat_id',$request->chatId)->first();
 
         $r = rand(0,100);
+        $p = rand(1,151);
 
         if($r > 50)
         {
             $request->request->add(['explore'=>'wild']);
             $request->request->add(['poke'=>'Rayquaza']);
+            $request->request->add(['sticker'=>'https://raw.githubusercontent.com/sambranaivan/telebot/main/public/sprites/'.$p.'.webp']);
         }
         else
         {
